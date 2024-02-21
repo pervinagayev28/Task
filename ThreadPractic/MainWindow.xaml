@@ -1,0 +1,43 @@
+﻿<Window x:Class="ThreadPractic.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ThreadPractic"
+        mc:Ignorable="d"
+        Title="MainWindow" >
+    <Grid VerticalAlignment="Center" HorizontalAlignment="Center" >
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+            <ListView Height="200" ScrollViewer.HorizontalScrollBarVisibility="Hidden" HorizontalAlignment="Center" ItemsSource="{Binding Cars}"  Name="list" Margin="10">
+                <ListBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel Orientation="Vertical"/>
+                    </ItemsPanelTemplate>
+                </ListBox.ItemsPanel>
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Width="250" Height="100" HorizontalAlignment="Center" VerticalAlignment="Center"  Orientation="Horizontal">
+                            <Border CornerRadius="20" Margin="10" Height="50" Width="50">
+                                <Border.Background>
+                                    <ImageBrush ImageSource="{Binding ImagePath}"/>
+                                </Border.Background>
+                            </Border>
+                            <StackPanel>
+                                <Label Content="{Binding Model}"/>
+                                <Label Content="{Binding Vendor}"/>
+                                <Label Content="{Binding Marka}"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListView>
+
+            <StackPanel Margin="15" Orientation="Horizontal" Height="50" >
+                <Button Name="OnOff" Content="multi" Height="40" Width="80" Padding="0" Margin="5" CommandParameter="{Binding ElementName=OnOff}" Command="{Binding OnOffCommand}"/>
+                <Label VerticalContentAlignment="Center" Margin="0,5"  FontSize="15" Height="40" Content="Time: "/>
+                <Label Name="Time_Label" VerticalContentAlignment="Center" Margin="0,5" FontSize="15" Height="40" Content="12.12.2002"/>
+                <Button Command="{Binding StartCommand}" CommandParameter="{Binding ElementName=OnOff}"  Content="start" Height="40" Width="80" Padding="0" Margin="5"/>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>
